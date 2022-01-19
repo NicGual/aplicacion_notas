@@ -1,0 +1,37 @@
+{{#if notes}}
+    <div class="m-0 row justify-content-center">
+        <div class="col-auto  p-2 text-center">
+            <h1> Hola {{user.name}}, aca estan todas tus notas.</h1>
+        </div>
+    </div>
+{{/if}}
+
+<div class="row">
+    
+    {{#each notes}}
+        <div class="col-md-3 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title d-flex justify-content-between aling-items-center"> 
+                        {{title}} <a href="/notes/edit/{{_id}}"><i class="fas fa-edit"></i></a></h4>
+                    <p> {{description}} </p>
+                    <form action="/notes/delete/{{_id}}" >
+                        <input type="hidden" name="_method" value="DELETE">
+                         <button class="btn btn-danger btn-block btn-sm" type="submit">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <div class="card mx-auto mt-5">
+            <div class="card-body">
+                <h1> hola {{user.name}} </h1>
+                <p class="lead">there are no notes yet </p>
+                <a href="/notes/add" class="btn btn-success btn-block">Create One!</a>
+            </div>
+        </div>
+
+    {{/each}}
+</div>
